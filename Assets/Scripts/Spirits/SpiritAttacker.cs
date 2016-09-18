@@ -19,7 +19,7 @@ public abstract class SpiritAttacker : Spirit
 		RaycastHit hit;
 
 		if (Physics.Raycast (myTransform.position, Vector3.right, out hit, attackDistance)) {
-			return hit.transform.tag == "Enemy";
+			return hit.transform.tag == "Monster";
 		} else
 			return false;
 	}

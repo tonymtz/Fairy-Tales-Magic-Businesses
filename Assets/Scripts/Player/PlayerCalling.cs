@@ -12,7 +12,7 @@ public class PlayerCalling : MonoBehaviour
 	[Header ("Basic Stats")]
 
 	[SerializeField]
-	private float energy_max;
+	private float energyMax;
 
 	[SerializeField]
 	private float energy;
@@ -25,22 +25,27 @@ public class PlayerCalling : MonoBehaviour
 	[Header ("Visual Effects")]
 
 	[SerializeField]
-	private Transform objetive;
+	private Transform target;
 
 	[SerializeField]
 	private Transform callingHalo;
+
+	[SerializeField]
+	private Transform callingBar;
+
+	private Player player;
 
 	private Transform spiritInProcess;
 
 	private bool isCalling;
 
-	private Player self;
+	private float callingTimeout;
 
-	private float timeout;
+	private float callingTimeLeft;
 
 	void Start ()
 	{
-		self = GetComponent<Player> ();
+		player = GetComponent<Player> ();
 
 		StopCalling ();
 	}
@@ -51,9 +56,9 @@ public class PlayerCalling : MonoBehaviour
 			return;
 		}
 
-		timeout -= Time.deltaTime;
+		callingTimeLeft -= Time.deltaTime;
 
-		if (timeout < 0) {
+		if (callingTimeLeft < 0) {
 			StopCalling ();
 		}
 	}
@@ -61,10 +66,12 @@ public class PlayerCalling : MonoBehaviour
 	private void StartCalling (Transform newSpirit)
 	{
 		spiritInProcess = newSpirit;
-		timeout = spiritInProcess.GetComponent<Spirit> ().CallingTimeout;
+		callingTimeout = spiritInProcess.GetComponent<Spirit> ().CallingTimeout;
+		callingTimeLeft = callingTimeout;
 
 		callingHalo.gameObject.SetActive (true);
-		objetive.gameObject.SetActive (true);
+		target.gameObject.SetActive (true);
+		callingBar.gameObject.SetActive (true);
 
 		isCalling = true;
 	}
@@ -75,9 +82,9 @@ public class PlayerCalling : MonoBehaviour
 			// TODO - Stop using objetive's position.
 			// - Why not?
 			spiritInProcess.position = new Vector3 (
-				objetive.position.x,
+				target.position.x,
 				0.0f,
-				objetive.position.z
+				target.position.z
 			);
 
 			Spirit mySpirit = spiritInProcess.GetComponent<Spirit> ();
@@ -88,7 +95,8 @@ public class PlayerCalling : MonoBehaviour
 		}
 
 		callingHalo.gameObject.SetActive (false);
-		objetive.gameObject.SetActive (false);
+		target.gameObject.SetActive (false);
+		callingBar.gameObject.SetActive (false);
 
 		isCalling = false;
 	}
@@ -126,14 +134,14 @@ public class PlayerCalling : MonoBehaviour
 	{
 		energy += energyAdded;
 
-		if (energy > energy_max) {
-			energy = energy_max;
+		if (energy > energyMax) {
+			energy = energyMax;
 		}
 	}
 
-	public float Energy_max {
+	public float EnergyMax {
 		get {
-			return energy_max;
+			return energyMax;
 		}
 	}
 
@@ -143,15 +151,27 @@ public class PlayerCalling : MonoBehaviour
 		}
 	}
 
-	public Transform Objetive {
+	public Transform Target {
 		get {
-			return objetive;
+			return target;
 		}
 	}
 
 	public bool IsCalling {
 		get {
 			return isCalling;
+		}
+	}
+
+	public float CallingTimeout {
+		get {
+			return callingTimeout;
+		}
+	}
+
+	public float CallingTimeLeft {
+		get {
+			return callingTimeLeft;
 		}
 	}
 }

@@ -24,15 +24,26 @@ public abstract class Spirit : MonoBehaviour
 	[SerializeField]
 	protected float hp_max = 1f;
 
+	[SerializeField]
+	private Transform spawnEffect;
+
+	[SerializeField]
+	private Transform killEffect;
+
+	[SerializeField]
+	private Transform dynamicText;
+
 	protected Rigidbody myRigidBody;
 
 	protected Transform myTransform;
 
-	protected bool isMoving = false;
+	protected bool isMoving = true;
 
 	protected float timeLeft = 0f;
 
-	protected void Initialize ()
+	private Vector3 originalPosition;
+
+	virtual protected void Initialize ()
 	{
 		myRigidBody = GetComponent<Rigidbody> ();
 		myTransform = GetComponent<Transform> ();
@@ -42,10 +53,15 @@ public abstract class Spirit : MonoBehaviour
 	{
 		float totalDamage = Mathf.Ceil (damage * (100 / (100 + defense)));
 
-		Debug.Log (" --- damage calculated:" + totalDamage);
+		Transform txt = (Transform)Instantiate (dynamicText, myTransform.position + Vector3.up / 2, Quaternion.identity, myTransform);
+		txt.GetComponent<DynamicText> ().SetText ("-" + totalDamage);
 
 		if (totalDamage > 0) {
 			hp_current -= totalDamage;
+		}
+
+		if (hp_current <= 0) {
+			Kill ();
 		}
 	}
 
@@ -63,11 +79,19 @@ public abstract class Spirit : MonoBehaviour
 
 	public void SpawnEffect ()
 	{
-		// empty
+		Instantiate (spawnEffect, myTransform, false);
 	}
 
-	virtual protected void Move ()
+	public void Kill ()
 	{
-		throw new UnityException ("This should be overridden");
+		Vector3 effectPosition = new Vector3 (
+			myTransform.position.x,
+			0.1f,
+			myTransform.position.z
+		);
+		Instantiate (killEffect, effectPosition, Quaternion.identity);
+		Destroy (gameObject);
 	}
+
+	abstract protected void Move ();
 }

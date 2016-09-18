@@ -32,21 +32,28 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private SpiritType optionalSlot;
 
+	[Header ("Visual Effects")]
+
+	[SerializeField]
+	private Transform energyHalo;
+
 	/*
 	 * Actions
 	 */
 
 	private PlayerCalling myPlayerCalling;
 
-	private PlayerMovement myPlayerMovement;
-
 	/*
 	 * Methods
 	 */
 
-	void Start ()
+	void Awake ()
 	{
 		myPlayerCalling = GetComponent<PlayerCalling> ();
+	}
+
+	void Start ()
+	{
 	}
 
 	public void UseStoneSlot ()
@@ -73,14 +80,24 @@ public class Player : MonoBehaviour
 		myPlayerCalling.CallSpirit (generatorSlot);
 	}
 
-	//	public Transform GetObjetive ()
-	//	{
-	//		return myPlayerCalling.Objetive;
-	//	}
+	public void StartEnergyRegeneration ()
+	{
+		energyHalo.gameObject.SetActive (true);
+	}
 
-	public Transform Objetive {
+	public void StopEnergyRegeneration ()
+	{
+		energyHalo.gameObject.SetActive (false);
+	}
+
+	public void AddEnergy (float energyAdded)
+	{
+		myPlayerCalling.AddEnergy (energyAdded);
+	}
+
+	public Transform Target {
 		get {
-			return myPlayerCalling.Objetive;
+			return myPlayerCalling.Target;
 		}
 	}
 
@@ -90,8 +107,27 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	//	public bool IsCalling ()
-	//	{
-	//		return myPlayerCalling.IsCalling;
-	//	}
+	public float Energy {
+		get {
+			return myPlayerCalling.Energy;
+		}
+	}
+
+	public float EnergyMax {
+		get {
+			return myPlayerCalling.EnergyMax;
+		}
+	}
+
+	public float CallingTimeout {
+		get {
+			return myPlayerCalling.CallingTimeout;
+		}
+	}
+
+	public float CallingTimeLeft {
+		get {
+			return myPlayerCalling.CallingTimeLeft;
+		}
+	}
 }

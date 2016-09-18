@@ -87,26 +87,26 @@ public class PlayerMovement : MonoBehaviour
 			Input.GetButton ("attackerSlot") ||
 			Input.GetButton ("optionalSlot") ||
 			Input.GetButton ("generatorSlot")) {
-			self.Objetive.gameObject.SetActive (true);
+			self.Target.gameObject.SetActive (true);
 		}
 
 		if (Input.GetButtonUp ("stoneSlot")) {
-			self.Objetive.gameObject.SetActive (false);
+			self.Target.gameObject.SetActive (false);
 			self.UseStoneSlot ();
 		}
 
 		if (Input.GetButtonUp ("attackerSlot")) {
-			self.Objetive.gameObject.SetActive (false);
+			self.Target.gameObject.SetActive (false);
 			self.UseAttackerSlot ();
 		}
 
 		if (Input.GetButtonUp ("optionalSlot")) {
-			self.Objetive.gameObject.SetActive (false);
+			self.Target.gameObject.SetActive (false);
 			self.UseOptionalSlot ();
 		}
 
 		if (Input.GetButtonUp ("generatorSlot")) {
-			self.Objetive.gameObject.SetActive (false);
+			self.Target.gameObject.SetActive (false);
 			self.UseGeneratorSlot ();
 		}
 	}
@@ -130,9 +130,9 @@ public class PlayerMovement : MonoBehaviour
 
 		mySpriteRenderer.flipX = !mySpriteRenderer.flipX;
 
-		Transform objetive = self.Objetive;
+		Transform objetive = self.Target;
 
-		objetive.localPosition = new Vector3 (facingRight ? 1 : -1, 0, 0);
+		objetive.localPosition = new Vector3 (facingRight ? 1 : -1, 0.1f, 0);
 	}
 
 	public void TakeDamage (float damage)

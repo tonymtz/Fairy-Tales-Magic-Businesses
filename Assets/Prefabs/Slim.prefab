@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000014163860116}
+  m_RootGameObject: {fileID: 1000010010550940}
   m_IsPrefabParent: 1
---- !u!1 &1000014163860116
+--- !u!1 &1000010010550940
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000013330760862}
-  - 212: {fileID: 212000012961637286}
-  - 54: {fileID: 54000013070148552}
-  - 65: {fileID: 65000010579688956}
-  - 114: {fileID: 114000012997481472}
+  - 4: {fileID: 4000010157550754}
+  - 212: {fileID: 212000012497943478}
+  - 54: {fileID: 54000013269028360}
+  - 65: {fileID: 65000013938619026}
+  - 114: {fileID: 114000013342886964}
   m_Layer: 0
-  m_Name: Turtle
-  m_TagString: Spirit
+  m_Name: Slim
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000013330760862
+--- !u!4 &4000010157550754
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014163860116}
+  m_GameObject: {fileID: 1000010010550940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: -3}
+  m_LocalPosition: {x: 4, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!54 &54000013070148552
+--- !u!54 &54000013269028360
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014163860116}
+  m_GameObject: {fileID: 1000010010550940}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -58,50 +58,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65000010579688956
+--- !u!65 &65000013938619026
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014163860116}
+  m_GameObject: {fileID: 1000010010550940}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.73333335, y: 0.4, z: 0.5}
+  m_Size: {x: 0.8666667, y: 0.4, z: 0.5}
   m_Center: {x: 0, y: 0.2, z: 0}
---- !u!114 &114000012997481472
+--- !u!114 &114000013342886964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014163860116}
+  m_GameObject: {fileID: 1000010010550940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f975eb3f23f4fa6ba20fda6b119adb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7978fe4d1a98e4a148f11c412e306dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magic_cost: 5
-  callingTimeout: 2
-  defense: 20
-  movement_speed: 0.5
-  movement_cooldown: 2
-  hp_current: 5
-  hp_max: 5
-  spawnEffect: {fileID: 4000013526890548, guid: e044e938911ff4ac29ed1e0950df2347,
-    type: 2}
-  killEffect: {fileID: 4000011294729170, guid: 8890474d4b95446d29a04dd7a0f6b191, type: 2}
-  dynamicText: {fileID: 224000014194550122, guid: 790c565ee2593474d937e45e1b5ad748,
-    type: 2}
   attack_power: 1
   attack_cooldown: 1
+  defense: 1
+  movement_speed: 0.25
+  movement_cooldown: 2.2
   attackDistance: 1
---- !u!212 &212000012961637286
+  hp_current: 1
+  hp_max: 1
+  objetive: {fileID: 0}
+--- !u!212 &212000012497943478
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014163860116}
+  m_GameObject: {fileID: 1000010010550940}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -125,7 +119,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ffe362f0ebd547a7806fd3427c41373, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0dbe1b8b9e77b42c1a90d6bc25433bf3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
